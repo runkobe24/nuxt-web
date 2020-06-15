@@ -40,8 +40,14 @@ export default {
    */
   modules: [
     // Doc: https://bootstrap-vue.js.org
-    'bootstrap-vue/nuxt'
+    'bootstrap-vue/nuxt',
+    '@nuxtjs/style-resources'
   ],
+  styleResources: {
+    scss: './assets/variables.scss',
+    less: './assets/**/*.less'
+    // sass: ...
+  },
   /*
    ** Build configuration
    */
