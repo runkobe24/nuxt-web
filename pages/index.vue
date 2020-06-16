@@ -1,18 +1,23 @@
 <template>
   <div>
-    <div class="top-header">
+    <!-- <div class="top-header">
       <Header />
+    </div> -->
+
+    <div class="container">
+      <transition>
+        <nuxt-child></nuxt-child>
+      </transition>
     </div>
-    <div class="container"></div>
   </div>
 </template>
 
 <script>
-import Header from '~/components/header'
+// import Header from '~/components/header'
 // import 'amfe-flexible'
 export default {
   components: {
-    Header
+    // Header
   }
 }
 </script>
@@ -21,8 +26,9 @@ export default {
 .container {
   margin: 0 auto;
   min-height: 100vh;
-
+  max-width: 1280px;
   text-align: center;
+  padding-top: 62px;
 }
 
 .title {
