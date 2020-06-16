@@ -1,11 +1,4 @@
-
-.page-enter-active, .page-leave-active {
-  transition: opacity 2s;
-}
-
-.page-enter, .page-leave-active {
-  opacity: 0;
-}
+/* 
 html {
   overflow-x: auto;
   overflow-y: scroll;
@@ -45,13 +38,10 @@ body {
   background-color: #FFFFFF;
   color: #666666;
   font-family: Helvetica, Arial, sans-serif;
-  /* font-size: 12px; */
+
   text-align: left;
 }
 
-select {
-  /* font-size: 12px; */
-}
 
 table {
   border-collapse: collapse;
@@ -117,4 +107,5 @@ q:after,
 blockquote:before,
 blockquote:after {
   content: "";
-}
+} */
+

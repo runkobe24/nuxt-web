@@ -1,9 +1,5 @@
 <template>
   <div>
-    <!-- <div class="top-header">
-      <Header />
-    </div> -->
-
     <div class="container">
       <transition>
         <nuxt-child></nuxt-child>
@@ -13,16 +9,12 @@
 </template>
 
 <script>
-// import Header from '~/components/header'
-// import 'amfe-flexible'
 export default {
-  components: {
-    // Header
-  }
+  components: {}
 }
 </script>
 
-<style lang="less" scopes>
+<style lang="less">
 .container {
   margin: 0 auto;
   min-height: 100vh;
@@ -51,5 +43,14 @@ export default {
 
 .links {
   padding-top: 15px;
+}
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 0.5s;
+}
+
+.page-enter,
+.page-leave-active {
+  opacity: 0;
 }
 </style>

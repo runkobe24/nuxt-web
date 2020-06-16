@@ -1,13 +1,15 @@
 <template>
   <div
     class="nav-parent"
+    :class="mouseIn ? 'mouseBg' : ''"
     @mouseenter.stop="enterParent($event)"
     @mouseleave="leaveParent()"
   >
     <div class="nav-child">
       <b-navbar toggleable="lg" type="dark" variant="info">
         <b-navbar-brand href="#">
-          <img class="logo" src="~/assets/logo@2x.png" alt="" />
+          <img v-if="!mouseIn" class="logo" src="~/assets/logo@2x.png" alt="" />
+          <img v-else class="logo" src="~/assets/blue-logo@2x.png" alt="" />
         </b-navbar-brand>
 
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
@@ -16,21 +18,39 @@
           <!-- Right aligned nav items -->
           <b-navbar-nav class="ml-auto">
             <b-navbar-nav>
-              <b-nav-item
+              <nuxt-link
+                v-for="(item, index) in NavrList"
+                :key="index"
+                class="nav-item nav-link normal"
+                :to="item.url"
+                :class="
+                  current === index && mouseIn
+                    ? 'bottom-border'
+                    : '' || ($route.fullPath === item.url && !mouseIn)
+                    ? 'bottom-blue'
+                    : $route.fullPath === item.url && mouseIn
+                    ? 'bottom-border'
+                    : ''
+                "
+                @mouseenter="enter(index)"
+                @mouseleave="leave()"
+                >{{ item.name }}</nuxt-link
+              >
+              <!-- <b-nav-item
                 v-for="(item, index) in NavrList"
                 :key="index"
                 :href="item.url"
                 :class="
                   current === index
-                    ? 'border-white'
+                    ? 'bottom-border'
                     : '' || $route.fullPath === item.url
-                    ? 'border-white'
+                    ? 'bottom-border'
                     : ''
                 "
                 @mouseenter="enter(index)"
                 @mouseleave="leave()"
                 >{{ item.name }}</b-nav-item
-              >
+              > -->
             </b-navbar-nav>
           </b-navbar-nav>
         </b-collapse>
@@ -80,7 +100,8 @@ export default {
       headerFixed: false,
       showBorder: false,
       current: '',
-      pageCurrent: false
+      pageCurrent: false,
+      mouseIn: true
     }
   },
 
@@ -111,26 +132,53 @@ export default {
       this.showBorder = false
     },
     enterParent(e) {
-      // e.stopPropagation()
+      e.stopPropagation()
+      this.mouseIn = true
     },
     leaveParent() {
+      this.mouseIn = false
       this.current = null
     }
   }
 }
 </script>
 <style lang="less" scoped>
-.border-white {
-  border-bottom: 1px solid white;
-  color: white !important;
+.mouseBg {
+  background: white;
+  z-index: 2222;
+}
+.nav-child {
+  /deep/ .normal {
+    color: #fff;
+  }
+}
+
+.bottom-border {
+  border-bottom: 3px solid #0066ff;
+
+  color: #0066ff !important;
   /deep/ .nav-link {
-    color: white;
+    color: #0066ff;
   }
   /deep/ .nav-link:focus {
-    color: white;
+    color: #0066ff;
   }
   /deep/ .nav-link:hover {
-    color: white;
+    color: #0066ff;
+  }
+}
+.bottom-blue {
+  border-bottom: 3px solid #ffffff;
+
+  color: #ffffff !important;
+  /deep/ .nav-link {
+    color: #ffffff;
+  }
+  /deep/ .nav-link:focus {
+    color: #ffffff;
+  }
+  /deep/ .nav-link:hover {
+    color: #ffffff;
   }
 }
 .nav-parent {
@@ -145,17 +193,23 @@ export default {
   .nav-item {
     margin: 0 10px;
   }
+  .nav-item:hover {
+    border-bottom: 3px solid #0066ff;
+    color: #0066ff !important;
+    /deep/ .nav-link {
+      color: #0066ff;
+    }
+    /deep/ .nav-link:focus {
+      color: #0066ff;
+    }
+    /deep/ .nav-link:hover {
+      color: #0066ff;
+    }
+  }
 }
-// .navbar-wrap {
-//   transform: scale(1, 1, 1);
-//   width: 1280px;
-// }
+
 .logo {
   width: 118px;
   height: 36px;
-}
-.active-white {
-  border-bottom: 1px solid white;
-  color: #fff;
 }
 </style>
