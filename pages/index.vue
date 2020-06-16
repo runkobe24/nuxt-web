@@ -1,13 +1,15 @@
 <template>
-  <div class="container">
-    <div>
+  <div>
+    <div class="top-header">
       <Header />
     </div>
+    <div class="container"></div>
   </div>
 </template>
 
 <script>
 import Header from '~/components/header'
+// import 'amfe-flexible'
 export default {
   components: {
     Header

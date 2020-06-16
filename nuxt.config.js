@@ -3,6 +3,10 @@ export default {
   /*
    ** Headers of the page
    */
+  server: {
+    // port: 8000,
+    // host: '127.0.0.1'
+  },
   head: {
     title: process.env.npm_package_name || '',
     meta: [
@@ -14,7 +18,12 @@ export default {
         content: process.env.npm_package_description || ''
       }
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    script: [
+      {
+        src: '//lib.baomitu.com/fastclick/1.0.6/fastclick.min.js'
+      }
+    ]
   },
   /*
    ** Customize the progress-bar color
@@ -23,11 +32,16 @@ export default {
   /*
    ** Global CSS
    */
-  css: [],
+  css: ['assets/css/main.css'],
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: [
+    // {
+    //   src: './node_modules/amfe-flexible/index.js',
+    //   ssr: false
+    // }
+  ],
   /*
    ** Nuxt.js dev-modules
    */
@@ -52,6 +66,15 @@ export default {
    ** Build configuration
    */
   build: {
+    postcss: {
+      plugins: {
+        'postcss-px2rem-exclude': {
+          remUnit: 16,
+          exclude: /(node_modules)/i
+        }
+      }
+    },
+
     /*
      ** You can extend webpack config here
      */

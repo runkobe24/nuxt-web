@@ -1,7 +1,6 @@
 <template>
   <div>
     <nuxt />
-    <p>1212</p>
   </div>
 </template>
 
